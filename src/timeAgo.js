@@ -138,6 +138,7 @@ angular.module('yaru22.angular-timeago', [
 
   service.inWords = function (distanceMillis) {
     var lang = document.documentElement.lang;
+    lang = lang.split('-').join('_');
     var $l = service.settings.strings[lang];
     if (typeof $l === 'undefined') {
       // Set the default
