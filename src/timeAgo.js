@@ -140,7 +140,18 @@ angular.module('yaru22.angular-timeago', [
     var lang = document.documentElement.lang;
     var $l = service.settings.strings[lang];
     if (typeof $l === 'undefined') {
+      // Set the default
       $l = service.settings.strings['en_US'];
+      
+      // But try matching two character code too
+      if (lang.length === 2) {
+        angular.forEach(service.settings.strings, function(value, _lang) {
+          if (_lang.split('_')[0] === lang) {
+            $l = value;
+          }
+        });
+      }
+      
     }
     var prefix = $l.prefixAgo;
     var suffix = $l.suffixAgo;
